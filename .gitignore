@@ -1,0 +1,9 @@
+*.o
+*.a
+*.d
+a.out
+*.swp
+Checklist.txt
+*.dSYM
+libft
+libft_test
