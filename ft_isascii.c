@@ -6,16 +6,11 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 19:11:16 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/28 15:31:10 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:43:32 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int		ft_isascii(int c)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	else
-		return (0);
+	return (c >= 0 && c <= 127);
 }

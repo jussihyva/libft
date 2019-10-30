@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 11:52:49 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/22 12:23:50 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 17:10:31 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,5 @@
 
 void	ft_putnbr(int n)
 {
-	static int		prt_neg;
-
-	prt_neg = 1;
-	if (n > 9 || n < -9)
-		ft_putnbr(n / 10);
-	if (prt_neg && n < 0)
-	{
-		prt_neg = 0;
-		ft_putchar('-');
-	}
-	if (n < 0)
-		ft_putchar('0' - n % 10);
-	else
-		ft_putchar('0' + n % 10);
+	return (ft_putnbr_fd(n, 1));
 }

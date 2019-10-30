@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 12:45:16 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/29 15:03:39 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 17:18:00 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_strclr(char *s)
 {
-	ft_bzero(s, ft_strlen(s));
+	return (ft_bzero(s, ft_strlen(s)));
 }

@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 12:57:01 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/29 15:04:47 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 17:19:31 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 		f(index, s + index);
 		index++;
 	}
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 13:01:21 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/23 19:04:51 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 17:15:58 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@
 void	ft_putstr_fd(char const *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
+	return ;
 }

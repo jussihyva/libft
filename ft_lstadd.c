@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 18:58:16 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/22 19:03:31 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:47:25 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	ft_lstadd(t_list **alst, t_list *new)
 {
 	new->next = *alst;
 	*alst = new;
+	return ;
 }

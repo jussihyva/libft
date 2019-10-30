@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 18:29:56 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/25 08:54:49 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:45:38 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 int				ft_isalpha(int c)
 {
-	if (ft_isupper(c) || ft_islower(c))
-		return (1);
-	else
-		return (0);
+	return (ft_isupper(c) || ft_islower(c));
 }

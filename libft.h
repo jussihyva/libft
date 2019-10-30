@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/28 15:55:17 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:26:35 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,5 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstadd_e(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-
-int					ft_memset_test(int case_id);
-int					ft_memccpy_test(int case_id);
-void				ft_strlcat_test(void);
-void				ft_strsplit_test(void);
-void				ft_atoi_test(void);
 
 #endif

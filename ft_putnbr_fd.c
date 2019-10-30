@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 13:21:46 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/22 13:36:27 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 17:08:36 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd('0' - n % 10, fd);
 	else
 		ft_putchar_fd('0' + n % 10, fd);
+	return ;
 }

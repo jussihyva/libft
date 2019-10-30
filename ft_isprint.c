@@ -6,16 +6,11 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 19:16:05 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/28 15:30:46 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:44:21 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int		ft_isprint(int c)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	else
-		return (0);
+	return (c >= 32 && c <= 126);
 }

@@ -6,16 +6,14 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:56:02 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/27 18:28:51 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 17:13:19 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int		ft_isspace(char c)
 {
-	char		space_array[6];
-	size_t		index;
+	char		space_array[7];
+	int			index;
 
 	space_array[0] = '\t';
 	space_array[1] = '\n';
@@ -23,11 +21,9 @@ int		ft_isspace(char c)
 	space_array[3] = '\f';
 	space_array[4] = '\r';
 	space_array[5] = ' ';
+	space_array[6] = '\0';
 	index = 0;
-	while (index < 6 && *(space_array + index) != c)
+	while (*(space_array + index) && *(space_array + index) != c)
 		index++;
-	if (index == 6)
-		return (0);
-	else
-		return (1);
+	return (*(space_array + index));
 }

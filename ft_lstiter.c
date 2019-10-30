@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 07:35:46 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/23 07:46:32 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:48:42 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 		f(elem);
 		elem = elem->next;
 	}
+	return ;
 }

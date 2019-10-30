@@ -6,16 +6,11 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 18:51:31 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/28 15:31:30 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:43:54 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int		ft_isdigit(int c)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
+	return (c >= '0' && c <= '9');
 }
