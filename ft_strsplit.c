@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 17:55:33 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/28 08:55:21 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 18:10:28 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ char			**ft_strsplit(char const *s, char c)
 	char		*match_ptr;
 	size_t		str_count;
 
-	str_lst = (t_list **)ft_memalloc(sizeof(*str_lst));
+	if (!(str_lst = (t_list **)ft_memalloc(sizeof(*str_lst))))
+		return (NULL);
 	str_count = 0;
 	s_ptr = (char *)s;
 	while (s_ptr && *s_ptr)

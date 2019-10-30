@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:50:06 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/30 16:47:51 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/10/30 18:08:29 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	t_list		*elem;
-
-	elem = *alst;
 	if (*alst)
 	{
 		ft_lstdel(&((*alst)->next), del);
