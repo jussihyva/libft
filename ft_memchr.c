@@ -21,5 +21,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		index++;
 	if (index == n)
 		return (NULL);
-	return (unsigned char *)(s + index);
+	return ((void *)(s + index));
 }
