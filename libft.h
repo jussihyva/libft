@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/30 16:26:35 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/05 17:48:56 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_fd_elem
+{
+	char			*buffer;
+	ssize_t			fd;
+}					t_fd_elem;
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
