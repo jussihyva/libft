@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	**ft_get_fd_buf(int fd, size t_size)
+# include "libft.h"
+
+char	**ft_get_fd_buf(int fd, size_t size)
 {
 	static t_fd_elem	*fd_table[MAX_NUM_FD];
 	size_t				index;
 	int					next_free;
-	char				*buffer;
+	char				**buffer;
 
 	index = 0;
 	next_free = -1;
@@ -25,25 +27,20 @@ char	**ft_get_fd_buf(int fd, size t_size)
 		{
 			if (fd_table[index]->fd == fd)
 			{
-				buffer = fd_table[next_free]->buffer;
+				buffer = &(fd_table[index]->buffer);
 				break;
 			}
 		}
-		else
-		{
-			if (next_free < 0)
-			{
-				next_free = index;
-			}
-		}
+		else if (next_free < 0)
+            next_free = index;
 		index++;
 	}
 	if (index == MAX_NUM_FD)
 	{
-		fd_table[next_free] = (t_fd_elem *)memalloc(sizeof(t_fd_elem));
-		buffer = fd_table[next_free]->buffer;
+	    index = next_free;
+		fd_table[index] = (t_fd_elem *)memalloc(sizeof(t_fd_elem));
+        fd_table[index]->buffer = ft_strnew(size);
 	}
-	else
-		buffer = fd_table[index];
+	buffer = &(fd_table[index]->buffer);
 	return (&buffer);
 }
