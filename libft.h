@@ -13,6 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+# include <sys/types.h>
 
 typedef struct		s_list
 {
