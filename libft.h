@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/05 17:48:56 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/08 18:56:15 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct		s_list
 typedef struct		s_fd_elem
 {
 	char			*buffer;
-	int			fd;
+	int				fd;
 }					t_fd_elem;
 
 t_fd_elem			**ft_get_fd_buf(int fd, size_t size);
