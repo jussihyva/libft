@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <string.h>
 # include <sys/types.h>
+# define MAX_NUM_FD 4
 
 typedef struct		s_list
 {
@@ -25,9 +26,10 @@ typedef struct		s_list
 typedef struct		s_fd_elem
 {
 	char			*buffer;
-	ssize_t			fd;
+	int			fd;
 }					t_fd_elem;
 
+t_fd_elem			**ft_get_fd_buf(int fd, size_t size);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_isupper(int c);

@@ -17,7 +17,6 @@ t_fd_elem	**ft_get_fd_buf(int fd, size_t size)
 	static t_fd_elem	*fd_table[MAX_NUM_FD];
 	size_t				index;
 	int					next_free;
-	char				**buffer;
 
 	index = 0;
 	next_free = -1;
@@ -35,11 +34,12 @@ t_fd_elem	**ft_get_fd_buf(int fd, size_t size)
 	if (index == MAX_NUM_FD)
 	{
 	    index = next_free;
-		if ((fd_table[index] = (t_fd_elem *)memalloc(sizeof(t_fd_elem)))
-		{
-            fd_table[index]->buffer = ft_strnew(size);
+	    if ((fd_table[index] = (t_fd_elem *)ft_memalloc(sizeof(t_fd_elem))))
+	    {
+		fd_table[index]->buffer = NULL;
+		    fd_table[index]->buffer = ft_strnew(size);
 		    fd_table[index]->fd = fd;
-        }
+	    }
 	}
 	return (fd_table + index);
 }

@@ -31,7 +31,8 @@ C_FUNCTIONS	=	ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove \
 				ft_putendl_fd ft_putnbr_fd \
 				ft_lstnew ft_lstdelone ft_lstdel \
 				ft_lstadd ft_lstadd_e ft_lstiter ft_lstmap \
-				ft_isupper ft_islower ft_isspace
+				ft_isupper ft_islower ft_isspace \
+				ft_get_fd_buf
 
 C_PATHS		=	$(addprefix $(SRCS), $(addsuffix .c, $(C_FUNCTIONS)))
 OBJ_FILES	=						 $(addsuffix .o, $(C_FUNCTIONS))
