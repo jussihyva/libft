@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/08 18:56:15 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/09 13:59:36 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 # include <string.h>
 # include <sys/types.h>
-# define MAX_NUM_FD 4
+# define MAX_NUM_FD 3042
 
 typedef struct		s_list
 {

@@ -6,11 +6,11 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:24:31 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/05 18:21:38 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/09 14:57:01 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
 t_fd_elem	**ft_get_fd_buf(int fd, size_t size)
 {
@@ -22,24 +22,20 @@ t_fd_elem	**ft_get_fd_buf(int fd, size_t size)
 	next_free = -1;
 	while (index < MAX_NUM_FD)
 	{
-		if (fd_table[index])
-		{
-			if (fd_table[index]->fd == fd)
-				break;
-		}
-		else if (next_free < 0)
-            next_free = index;
+		if (fd_table[index] && fd_table[index]->fd == fd)
+			break ;
+		else if (!fd_table[index] && next_free < 0)
+			next_free = index;
 		index++;
 	}
 	if (index == MAX_NUM_FD)
 	{
-	    index = next_free;
-	    if ((fd_table[index] = (t_fd_elem *)ft_memalloc(sizeof(t_fd_elem))))
-	    {
-		fd_table[index]->buffer = NULL;
-		    fd_table[index]->buffer = ft_strnew(size);
-		    fd_table[index]->fd = fd;
-	    }
+		index = next_free;
+		if ((fd_table[index] = (t_fd_elem *)ft_memalloc(sizeof(t_fd_elem))))
+		{
+			fd_table[index]->buffer = ft_strnew(size);
+			fd_table[index]->fd = fd;
+		}
 	}
 	return (fd_table + index);
 }
