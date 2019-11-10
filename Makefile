@@ -6,7 +6,7 @@
 #    By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2019/10/30 16:26:57 by jkauppi          ###   ########.fr        #
+#    Updated: 2019/11/10 13:32:02 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ C_FUNCTIONS	=	ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove \
 				ft_lstnew ft_lstdelone ft_lstdel \
 				ft_lstadd ft_lstadd_e ft_lstiter ft_lstmap \
 				ft_isupper ft_islower ft_isspace \
-				ft_get_fd_buf
+				ft_get_fd_buf ft_get_next_line
 
 C_PATHS		=	$(addprefix $(SRCS), $(addsuffix .c, $(C_FUNCTIONS)))
 OBJ_FILES	=						 $(addsuffix .o, $(C_FUNCTIONS))
