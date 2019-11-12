@@ -6,50 +6,37 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:19:55 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/28 17:26:52 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/12 11:22:28 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_count_digits(int n)
+static char		*ft_nbr2str(long nbr, int count, int neg)
 {
-	size_t		count;
+	static char		*str;
 
-	count = 1;
-	while (n > 9 || n < -9)
+	if (nbr > 9 || nbr < -9)
+		str = ft_nbr2str(nbr / 10, ++count, neg);
+	if (!str)
+		str = (char *)ft_strnew(sizeof(*str) * (count + neg));
+	if (neg)
 	{
-		count++;
-		n = n / 10;
+		if (!ft_strlen(str) && neg)
+			*(str + ft_strlen(str)) = '-';
+		*(str + ft_strlen(str)) = '0' - (nbr % 10);
 	}
-	return (count);
+	else
+		*(str + ft_strlen(str)) = '0' + (nbr % 10);
+	return (str);
 }
 
 char			*ft_itoa(int n)
 {
-	size_t		count;
-	char		*str;
-	int			tmp_n;
 	int			neg;
 
 	neg = 0;
 	if (n < 0)
 		neg = 1;
-	count = ft_count_digits(n);
-	if ((str = ft_strnew(count + neg)))
-	{
-		tmp_n = n;
-		while (count-- > 0)
-		{
-			if (neg)
-				*(str + neg + count) = '0' - tmp_n % 10;
-			else
-				*(str + neg + count) = '0' + tmp_n % 10;
-			tmp_n = tmp_n / 10;
-		}
-		if (neg)
-			*str = '-';
-		return (str);
-	}
-	return (NULL);
+	return (ft_nbr2str(n, 0, neg));
 }

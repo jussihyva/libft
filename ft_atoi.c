@@ -6,41 +6,11 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:02:02 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/29 07:34:29 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/12 12:51:51 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int		create_nbr(unsigned int nbr, int neg)
-{
-	if (neg)
-		return ((int)nbr * -1);
-	else
-		return (int)(nbr);
-}
-
-static int		is_valid_char(long *nbr, int *neg, char c)
-{
-	if (c == '-')
-		*neg = 1;
-	else if (c == '+')
-		*neg = 0;
-	else if (ft_isdigit(c))
-	{
-		if (c != '0')
-		{
-			*neg = 0;
-			*nbr = (*nbr * 10) + (c - '0');
-		}
-	}
-	else if (ft_isspace(c))
-	{
-	}
-	else
-		return (0);
-	return (1);
-}
 
 static int		add_digit(long *nbr, char c)
 {
@@ -56,11 +26,41 @@ static int		add_digit(long *nbr, char c)
 		return (1);
 }
 
-static int		ft_undefined(int neg)
+static void		ft_rem_spaces(size_t *index, const char *str)
 {
-	if (neg)
+	while (ft_isspace(*(str + *index)))
+		(*index)++;
+	return ;
+}
+
+static int		ft_neg_pos(size_t *index, char c)
+{
+	if (c == '-' || c == '+')
+		(*index)++;
+	if (c == '-')
+		return (1);
+	else
 		return (0);
-	return (-1);
+}
+
+static long		ft_read_digits(size_t *index, const char *str, int neg)
+{
+	long		nbr;
+
+	nbr = 0;
+	while (ft_isdigit(*(str + *index)))
+	{
+		if (add_digit(&nbr, *(str + *index)))
+		{
+			if (neg)
+				nbr = 0;
+			else
+				nbr = -1;
+			break ;
+		}
+		(*index)++;
+	}
+	return (nbr);
 }
 
 int				ft_atoi(const char *str)
@@ -69,23 +69,13 @@ int				ft_atoi(const char *str)
 	int				neg;
 	size_t			index;
 
-	index = -1;
-	neg = -1;
+	index = 0;
 	nbr = 0;
-	while (*(str + ++index))
-	{
-		if (nbr == 0 && neg < 0)
-		{
-			if (!is_valid_char(&nbr, &neg, *(str + index)))
-				return (0);
-		}
-		else
-		{
-			if (!(ft_isdigit(*(str + index))))
-				return (create_nbr(nbr, neg));
-			if (add_digit(&nbr, *(str + index)))
-				return (ft_undefined(neg));
-		}
-	}
-	return (create_nbr(nbr, neg));
+	ft_rem_spaces(&index, str);
+	neg = ft_neg_pos(&index, *(str + index));
+	nbr = ft_read_digits(&index, str, neg);
+	if (neg)
+		return ((int)(nbr * -1));
+	else
+		return ((int)(nbr));
 }
