@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:19:55 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/12 11:22:28 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/12 13:23:41 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ char			*ft_itoa(int n)
 	neg = 0;
 	if (n < 0)
 		neg = 1;
-	return (ft_nbr2str(n, 0, neg));
+	return (ft_nbr2str(n, 1, neg));
 }
