@@ -6,14 +6,14 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 12:58:24 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/30 17:04:05 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/14 15:45:49 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+int		ft_putchar_fd(int c, int fd)
 {
 	write(fd, &c, 1);
-	return ;
+	return (c);
 }

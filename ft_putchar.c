@@ -6,14 +6,14 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 11:27:47 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/30 17:03:18 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/14 15:45:07 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+int		putchar(int c);
 {
 	ft_putchar_fd(c, 1);
-	return ;
+	return (c);
 }
