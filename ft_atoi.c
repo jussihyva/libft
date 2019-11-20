@@ -12,70 +12,41 @@
 
 #include "libft.h"
 
-static int		add_digit(long *nbr, char c)
+static int		add_digit(long *nbr, char c, int neg)
 {
 	long		tmp;
 
-	tmp = (*nbr * 10) + (c - '0');
-	if (tmp >= *nbr)
+	if (ft_isdigit(c))
 	{
-		*nbr = tmp;
-		return (0);
-	}
-	else
-		return (1);
-}
-
-static void		ft_rem_spaces(size_t *index, const char *str)
-{
-	while (ft_isspace(*(str + *index)))
-		(*index)++;
-	return ;
-}
-
-static int		ft_neg_pos(size_t *index, char c)
-{
-	if (c == '-' || c == '+')
-		(*index)++;
-	if (c == '-')
-		return (1);
-	else
-		return (0);
-}
-
-static long		ft_read_digits(size_t *index, const char *str, int neg)
-{
-	long		nbr;
-
-	nbr = 0;
-	while (ft_isdigit(*(str + *index)))
-	{
-		if (add_digit(&nbr, *(str + *index)))
+		tmp = (*nbr * 10) + (c - '0');
+		if (tmp >= *nbr)
 		{
-			if (neg)
-				nbr = 0;
-			else
-				nbr = -1;
-			break ;
+			*nbr = tmp;
+			return (1);
 		}
-		(*index)++;
+		*nbr = -1;
+		if (neg)
+			*nbr = 0;
 	}
-	return (nbr);
+	return (0);
 }
 
 int				ft_atoi(const char *str)
 {
 	long			nbr;
 	int				neg;
-	size_t			index;
 
-	index = 0;
+	while (ft_isspace(*str))
+		str++;
+	neg = 0;
+	if (*str == '-')
+		neg = 1;
+	if (*str == '-' || *str == '+')
+		str++;
 	nbr = 0;
-	ft_rem_spaces(&index, str);
-	neg = ft_neg_pos(&index, *(str + index));
-	nbr = ft_read_digits(&index, str, neg);
+	while (add_digit(&nbr, *str, neg))
+		str++;
 	if (neg)
 		return ((int)(nbr * -1));
-	else
-		return ((int)(nbr));
+	return ((int)(nbr));
 }
