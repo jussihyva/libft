@@ -6,88 +6,65 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 17:55:33 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/30 18:10:28 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/20 20:13:13 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-static void		ft_del(void *content, size_t size)
+static void		ft_save_word(char **array, char *s, int w_len, int w_count)
 {
-	(void)size;
-	free(content);
+	int		i;
+
+	i = 0;
+	array[w_count] = (char *)malloc(sizeof(char) * (w_len + 1));
+	while (w_len--)
+	{
+		array[w_count][i] = *(s - w_len - 1);
+		i++;
+	}
+	array[w_count][i] = '\0';
+	return ;
 }
 
-static void		add2lst(size_t index, char *s_ptr, t_list **str_lst,
-		size_t *str_count)
+static int		ft_count_save(char *s, char c, char **array)
 {
-	char	*sub_str;
+	int		w_count;
+	int		w_len;
 
-	if (index)
+	w_count = 0;
+	while (*s)
 	{
-		if ((sub_str = ft_strnew(sizeof(*s_ptr) * (index))))
+		if (*s == c)
+			s++;
+		else
 		{
-			sub_str = strncpy(sub_str, s_ptr, index);
-			if (*str_count)
-				ft_lstadd(str_lst, ft_lstnew(sub_str, sizeof(*sub_str) *
-							ft_strlen(sub_str)));
-			else
-				*str_lst = ft_lstnew(sub_str, sizeof(sub_str) *
-						ft_strlen(sub_str));
-			(*str_count)++;
+			w_len = 0;
+			while (*s && *s != c)
+			{
+				w_len++;
+				s++;
+			}
+			if (array)
+				ft_save_word(array, s, w_len, w_count);
+			w_count += 1;
 		}
 	}
-}
-
-static char		**save2array(size_t str_count, t_list **str_lst)
-{
-	char		**str_array;
-	size_t		index;
-	t_list		*elem;
-
-	str_array = (char **)ft_memalloc(sizeof(*str_array) * (str_count + 1));
-	if (str_array)
-	{
-		index = str_count - 1;
-		elem = *str_lst;
-		while (elem)
-		{
-			*(str_array + index) = ft_strdup(elem->content);
-			elem = elem->next;
-			index--;
-		}
-		*(str_array + str_count) = NULL;
-		ft_lstdel(str_lst, &ft_del);
-		return (str_array);
-	}
-	else
-		return (NULL);
+	if (array)
+		*(array + w_count) = 0;
+	return (w_count);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
-	t_list		**str_lst;
-	char		*s_ptr;
-	char		*match_ptr;
-	size_t		str_count;
+	int			num_of_words;
+	char		**array;
 
-	if (!(str_lst = (t_list **)ft_memalloc(sizeof(*str_lst))))
-		return (NULL);
-	str_count = 0;
-	s_ptr = (char *)s;
-	while (s_ptr && *s_ptr)
-	{
-		if ((match_ptr = ft_strchr(s_ptr, c)))
-		{
-			add2lst(match_ptr - s_ptr, s_ptr, str_lst, &str_count);
-			s_ptr = match_ptr + 1;
-		}
-		else
-		{
-			add2lst(ft_strlen(s_ptr), s_ptr, str_lst, &str_count);
-			s_ptr = NULL;
-		}
-	}
-	return (save2array(str_count, str_lst));
+	array = 0;
+	num_of_words = ft_count_save((char *)s, c, array);
+	array = (char **)malloc(sizeof(*array) * (num_of_words + 1));
+	*(array + num_of_words) = 0;
+	num_of_words = ft_count_save((char *)s, c, array);
+	return (array);
 }
