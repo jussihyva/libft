@@ -12,23 +12,27 @@
 
 #include "libft.h"
 
-static char		*ft_nbr2str(long nbr, int count, int neg)
+static char		*ft_nbr2str(unsigned int nbr, int count, int neg)
 {
 	static char		*str;
+	static char		*letter = "0123456789ABCDEF";
 
-	if (nbr > 9 || nbr < -9)
+	if (nbr >= 10)
 		str = ft_nbr2str(nbr / 10, ++count, neg);
 	if (!str)
 		str = (char *)ft_strnew(sizeof(*str) * (count + neg));
-	if (neg)
-	{
-		if (!ft_strlen(str) && neg)
-			*(str + ft_strlen(str)) = '-';
-		*(str + ft_strlen(str)) = '0' - (nbr % 10);
-	}
-	else
-		*(str + ft_strlen(str)) = '0' + (nbr % 10);
+	if (neg && !ft_strlen(str))
+		*(str + ft_strlen(str)) = '-';
+	*(str + ft_strlen(str)) = letter[nbr % 10];
 	return (str);
+}
+
+static unsigned int	ft_un_int(int n, int neg)
+{
+	if (neg)
+		return ((unsigned int)(n * -1));
+	else
+		return ((unsigned int)n);
 }
 
 char			*ft_itoa(int n)
@@ -38,5 +42,5 @@ char			*ft_itoa(int n)
 	neg = 0;
 	if (n < 0)
 		neg = 1;
-	return (ft_nbr2str(n, 1, neg));
+	return (ft_nbr2str(ft_un_int(n, neg), 1, neg));
 }
