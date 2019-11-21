@@ -6,13 +6,13 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:19:55 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/12 13:23:41 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/21 13:18:13 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*ft_nbr2str(unsigned int nbr, int count, int neg)
+static char				*ft_nbr2str(unsigned int nbr, int count, int neg)
 {
 	static char		*str;
 	static char		*letter = "0123456789ABCDEF";
@@ -27,7 +27,7 @@ static char		*ft_nbr2str(unsigned int nbr, int count, int neg)
 	return (str);
 }
 
-static unsigned int	ft_un_int(int n, int neg)
+static unsigned int		ft_un_int(int n, int neg)
 {
 	if (neg)
 		return ((unsigned int)(n * -1));
@@ -35,7 +35,7 @@ static unsigned int	ft_un_int(int n, int neg)
 		return ((unsigned int)n);
 }
 
-char			*ft_itoa(int n)
+char					*ft_itoa(int n)
 {
 	int			neg;
 
