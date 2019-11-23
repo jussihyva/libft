@@ -21,6 +21,8 @@ static int			ft_build_new_line(char **buffer, char **line,
 	t_list		*elem;
 	t_list		*tmp;
 
+	if (!(*line = ft_memalloc(sizeof(char) * (match_ptr - *buffer + 1))))
+		return (-1);
 	*match_ptr = '\0';
 	if (elem_lst && *elem_lst)
 	{
@@ -98,10 +100,7 @@ static int			ft_read_fd_buffer(t_fd_elem **fd_elem, int fd, char **line,
 	{
 		*(char *)(*buffer + index + ret) = '\0';
 		if ((match_ptr = ft_strchr(*buffer + index, '\n')))
-		{
-			*line = ft_memalloc(sizeof(char) * (index + ret + num_of_char + 1));
 			return (ft_build_new_line(buffer, line, match_ptr, elem));
-		}
 		index += ret;
 		index = ft_add_buf_lst(*buffer, index, elem, &num_of_char);
 	}
@@ -125,10 +124,7 @@ int					ft_get_next_line(const int fd, char **line)
 		fd_elem = ft_get_fd_buf(fd, sizeof(char) * (BUFF_SIZE * BUFF_FACTOR));
 		buffer = &(*fd_elem)->buffer;
 		if ((match_ptr = ft_strchr(*buffer, '\n')))
-		{
-			*line = ft_memalloc(sizeof(char) * (match_ptr - *buffer + 1));
 			return (ft_build_new_line(buffer, line, match_ptr, &elem));
-		}
 		else
 			return (ft_read_fd_buffer(fd_elem, fd, line, &elem));
 	}
