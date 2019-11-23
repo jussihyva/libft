@@ -6,7 +6,7 @@
 #    By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2019/11/23 15:17:31 by jkauppi          ###   ########.fr        #
+#    Updated: 2019/11/23 15:21:17 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ C_FUNCTIONS	=	ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove \
 				ft_strnew ft_strdel ft_strclr ft_striter ft_striteri \
 				ft_strmap ft_strmapi ft_strequ ft_strnequ ft_strsub \
 				ft_strjoin ft_strtrim ft_strsplit ft_itoa ft_putchar \
-				ft_putstr ft_putendl ft_putnbr ft_putchar_fd ft_putstr_fd \
+				ft_putstr ft_putnbr ft_putchar_fd ft_putendl ft_putstr_fd \
 				ft_putendl_fd ft_putnbr_fd \
 				ft_lstnew ft_lstdelone ft_lstdel \
 				ft_lstadd ft_lstadd_e ft_lstiter ft_lstmap \
