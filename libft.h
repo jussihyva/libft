@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/09 13:59:36 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/23 15:13:30 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_fd_elem
 	int				fd;
 }					t_fd_elem;
 
+int					ft_get_next_line(const int fd, char **line);
 t_fd_elem			**ft_get_fd_buf(int fd, size_t size);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
