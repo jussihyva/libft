@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/23 15:21:40 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/24 15:17:32 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <string.h>
 # include <sys/types.h>
 # define MAX_NUM_FD 3042
-# define BUFF_SIZE 32
+# define BUFF_SIZE 50000
 # define BUFF_FACTOR 10
 
 typedef struct		s_list
