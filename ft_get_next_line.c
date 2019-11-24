@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 10:24:46 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/24 15:33:14 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/24 16:25:39 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ static int			ft_reply(t_fd_elem **fd_elem, size_t num_of_char,
 	*line = ft_memalloc((sizeof(char) * ft_strlen(buffer) + num_of_char + 1));
 	if (*buffer || *elem)
 	{
-		return (ft_build_new_line(buffer, line, buffer
-					+ ft_strlen(buffer), elem));
+		ft_build_new_line(buffer, line, buffer
+					+ ft_strlen(buffer), elem);
+		return (1);
 	}
 	else
 	{
