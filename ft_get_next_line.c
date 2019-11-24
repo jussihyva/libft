@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 10:24:46 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/24 16:25:39 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/24 16:53:20 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static int			ft_build_new_line(char *buffer, char **line,
+static int			ft_build_new_line(t_fd_elem **fd_elem, char **line,
 		char *match_ptr, t_list **elem_lst)
 {
 	t_list		*elem;
 	t_list		*tmp;
 
-	if (!(*line = ft_memalloc(sizeof(char) * (match_ptr - buffer + 1))))
+	if (!(*line = ft_memalloc(sizeof(char) * (match_ptr -
+						(*fd_elem)->read_ptr + 1))))
 		return (-1);
 	*match_ptr = '\0';
 	if (elem_lst && *elem_lst)
@@ -36,11 +37,11 @@ static int			ft_build_new_line(char *buffer, char **line,
 			elem = tmp;
 		}
 		*elem_lst = NULL;
-		ft_strcat(*line, buffer);
+		ft_strcat(*line, (*fd_elem)->read_ptr);
 	}
 	else
-		*line = ft_strcpy(*line, buffer);
-	buffer = ft_strcpy(buffer, match_ptr + 1);
+		*line = ft_strcpy(*line, (*fd_elem)->read_ptr);
+	(*fd_elem)->read_ptr = match_ptr + 1;
 	return (1);
 }
 
@@ -68,11 +69,11 @@ static int			ft_reply(t_fd_elem **fd_elem, size_t num_of_char,
 {
 	char		*buffer;
 
-	buffer = (*fd_elem)->buffer;
+	buffer = (*fd_elem)->read_ptr;
 	*line = ft_memalloc((sizeof(char) * ft_strlen(buffer) + num_of_char + 1));
 	if (*buffer || *elem)
 	{
-		ft_build_new_line(buffer, line, buffer
+		ft_build_new_line(fd_elem, line, buffer
 					+ ft_strlen(buffer), elem);
 		return (1);
 	}
@@ -94,14 +95,15 @@ static int			ft_read_fd_buffer(t_fd_elem **fd_elem, int fd, char **line,
 	size_t				num_of_char;
 	char				*buffer;
 
-	buffer = (*fd_elem)->buffer;
+	buffer = ft_strcpy((*fd_elem)->buffer, (*fd_elem)->read_ptr);
+	(*fd_elem)->read_ptr = (*fd_elem)->buffer;
 	num_of_char = 0;
 	index = ft_strlen(buffer);
 	while ((ret = read(fd, buffer + index, BUFF_SIZE)) > 0)
 	{
 		*(char *)(buffer + index + ret) = '\0';
 		if ((match_ptr = ft_strchr(buffer + index, '\n')))
-			return (ft_build_new_line(buffer, line, match_ptr, elem));
+			return (ft_build_new_line(fd_elem, line, match_ptr, elem));
 		index += ret;
 		index = ft_add_buf_lst(buffer, index, elem, &num_of_char);
 	}
@@ -123,9 +125,9 @@ int					ft_get_next_line(const int fd, char **line)
 	if (line)
 	{
 		fd_elem = ft_get_fd_buf(fd, sizeof(char) * (BUFF_SIZE * BUFF_FACTOR));
-		buffer = (*fd_elem)->buffer;
+		buffer = (*fd_elem)->read_ptr;
 		if ((match_ptr = ft_strchr(buffer, '\n')))
-			return (ft_build_new_line(buffer, line, match_ptr, &elem));
+			return (ft_build_new_line(fd_elem, line, match_ptr, &elem));
 		else
 			return (ft_read_fd_buffer(fd_elem, fd, line, &elem));
 	}

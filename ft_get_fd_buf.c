@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:24:31 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/09 14:57:01 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/11/24 16:29:43 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_fd_elem	**ft_get_fd_buf(int fd, size_t size)
 		if ((fd_table[index] = (t_fd_elem *)ft_memalloc(sizeof(t_fd_elem))))
 		{
 			fd_table[index]->buffer = ft_strnew(size);
+			fd_table[index]->read_ptr = fd_table[index]->buffer;
 			fd_table[index]->fd = fd;
 		}
 	}
