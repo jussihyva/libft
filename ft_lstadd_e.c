@@ -16,7 +16,7 @@ void	ft_lstadd_e(t_list **alst, t_list *new)
 {
 	t_list	*elem;
 
-	if (*alst)
+	if (alst && *alst)
 	{
 		elem = *alst;
 		while (elem->next)
