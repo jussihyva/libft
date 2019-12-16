@@ -64,7 +64,7 @@ static size_t		ft_add_buf_lst(char *buffer,
 	return (index);
 }
 
-static int			ft_reply(t_fd_elem **fd_elem, size_t num_of_char,
+static int			ft_reply(t_fd_elem **fd_elem,
 		char **line, t_list **elem)
 {
 	char		*buffer;
@@ -112,7 +112,7 @@ static int			ft_read_fd_buffer(t_fd_elem **fd_elem, int fd, char **line,
 		*(buffer + index + 1) = '\0';
 	if (ret)
 		return (ret);
-	return (ft_reply(fd_elem, *num_of_char, line, elem));
+	return (ft_reply(fd_elem, line, elem));
 }
 
 int					ft_get_next_line(const int fd, char **line)
