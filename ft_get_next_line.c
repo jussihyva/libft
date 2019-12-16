@@ -21,8 +21,8 @@ static int			ft_build_new_line(t_fd_elem **fd_elem, char **line,
 	t_list		*elem;
 	t_list		*tmp;
 
-	if (!(*line = ft_memalloc(sizeof(char) * (match_ptr -
-						(*fd_elem)->read_ptr + 1))))
+	if (!(*line = ft_strnew(match_ptr - (*fd_elem)->read_ptr +
+						(*fd_elem)->saved_chars)))
 		return (-1);
 	*match_ptr = '\0';
 	if (elem_lst && *elem_lst)
@@ -70,7 +70,6 @@ static int			ft_reply(t_fd_elem **fd_elem, size_t num_of_char,
 	char		*buffer;
 
 	buffer = (*fd_elem)->read_ptr;
-	*line = ft_memalloc((sizeof(char) * ft_strlen(buffer) + num_of_char + 1));
 	if (*buffer || *elem)
 	{
 		ft_build_new_line(fd_elem, line, buffer
@@ -79,6 +78,7 @@ static int			ft_reply(t_fd_elem **fd_elem, size_t num_of_char,
 	}
 	else
 	{
+		*line = ft_strnew(0);
 		ft_memdel((void **)(&buffer));
 		free(*fd_elem);
 		*fd_elem = NULL;
@@ -92,12 +92,13 @@ static int			ft_read_fd_buffer(t_fd_elem **fd_elem, int fd, char **line,
 	ssize_t				index;
 	ssize_t				ret;
 	char				*match_ptr;
-	size_t				num_of_char;
+	size_t				*num_of_char;
 	char				*buffer;
 
 	buffer = ft_strcpy((*fd_elem)->buffer, (*fd_elem)->read_ptr);
 	(*fd_elem)->read_ptr = (*fd_elem)->buffer;
-	num_of_char = 0;
+	(*fd_elem)->saved_chars = 0;
+	num_of_char = &((*fd_elem)->saved_chars);
 	index = ft_strlen(buffer);
 	while ((ret = read(fd, buffer + index, BUFF_SIZE)) > 0)
 	{
@@ -105,13 +106,13 @@ static int			ft_read_fd_buffer(t_fd_elem **fd_elem, int fd, char **line,
 		if ((match_ptr = ft_strchr(buffer + index, '\n')))
 			return (ft_build_new_line(fd_elem, line, match_ptr, elem));
 		index += ret;
-		index = ft_add_buf_lst(buffer, index, elem, &num_of_char);
+		index = ft_add_buf_lst(buffer, index, elem, num_of_char);
 	}
 	if (!ret)
 		*(buffer + index + 1) = '\0';
 	if (ret)
 		return (ret);
-	return (ft_reply(fd_elem, num_of_char, line, elem));
+	return (ft_reply(fd_elem, *num_of_char, line, elem));
 }
 
 int					ft_get_next_line(const int fd, char **line)

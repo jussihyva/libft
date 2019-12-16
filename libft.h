@@ -15,7 +15,7 @@
 # include <string.h>
 # include <sys/types.h>
 # define MAX_NUM_FD 3042
-# define BUFF_SIZE 100
+# define BUFF_SIZE 1
 # define BUFF_FACTOR 10
 
 typedef struct		s_list
@@ -29,6 +29,7 @@ typedef struct		s_fd_elem
 {
 	char			*buffer;
 	char			*read_ptr;
+	size_t			saved_chars;
 	int				fd;
 }					t_fd_elem;
 
