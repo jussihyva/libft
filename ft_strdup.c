@@ -6,7 +6,7 @@
 /*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:19:40 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/24 18:03:32 by jkauppi          ###   ########.fr       */
+/*   Updated: 2019/12/18 12:00:05 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strdup(const char *s1)
 {
 	char		*dst;
 
+	if (!s1)
+		return (0);
 	dst = (char *)ft_memalloc(ft_strlen(s1) + 1);
 	if (!dst)
 		return (NULL);
