@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 13:51:20 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/25 12:14:08 by jkauppi          ###   ########.fr       */
+/*   Updated: 2020/01/26 16:14:01 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 			elem->content_size = 0;
 		}
 		elem->next = NULL;
+		elem->prev = NULL;
 	}
 	return (elem);
 }

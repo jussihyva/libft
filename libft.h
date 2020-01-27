@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/24 18:13:54 by jkauppi          ###   ########.fr       */
+/*   Updated: 2020/01/26 16:12:49 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_list
 {
 	void			*content;
 	size_t			content_size;
+	struct s_list	*prev;
 	struct s_list	*next;
 }					t_list;
 
