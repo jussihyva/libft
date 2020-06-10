@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 10:24:46 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/24 18:12:31 by jkauppi          ###   ########.fr       */
+/*   Updated: 2020/04/08 16:36:30 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int			ft_reply(t_fd_elem **fd_elem,
 	{
 		ft_build_new_line(fd_elem, line, buffer
 					+ ft_strlen(buffer), elem);
-		return (1);
+		return (0);
 	}
 	else
 	{
