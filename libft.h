@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2020/01/26 16:12:49 by jkauppi          ###   ########.fr       */
+/*   Updated: 2020/08/23 12:06:23 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 # include <string.h>
 # include <sys/types.h>
+# include <limits.h>
+# include <errno.h>
 # define MAX_NUM_FD 3042
 # define BUFF_SIZE 100
 # define BUFF_FACTOR 10
@@ -34,6 +36,9 @@ typedef struct		s_fd_elem
 	int				fd;
 }					t_fd_elem;
 
+int					ft_abs(int i);
+void				ft_step_args(int *argc, char ***argv);
+int					ft_strtoi(const char *str, char **endptr, int base);
 int					ft_get_next_line(const int fd, char **line);
 t_fd_elem			**ft_get_fd_buf(int fd, size_t size);
 int					ft_atoi(const char *str);
