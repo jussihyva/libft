@@ -1,0 +1,9 @@
+{
+	"C_Cpp.default.includePath":
+	[
+		"include/**",
+		"src/**",
+		"lib/**"
+	],
+	"editor.insertSpaces": false
+}

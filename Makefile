@@ -3,58 +3,95 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: juhani <juhani@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2020/08/23 12:00:33 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/03/05 11:32:37 by juhani           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
-MAIN_NAME	=	libft
-LIB_FOLDER	=	./
 LIB_SUFFIX	=	ft
-LIB_NAME	=	lib$(LIB_SUFFIX).a
-SRCS		=	./
-INCLUDES	=	./
-C_FLAGS		=	-Wall -Werror -Wextra
-C_FUNCTIONS	=	ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove \
-				ft_memchr ft_memcmp ft_strlen ft_strdup ft_strcpy \
-				ft_strncpy ft_strcat ft_strncat ft_strlcat ft_strchr \
-				ft_strrchr ft_strstr ft_strnstr ft_strcmp ft_strncmp \
-				ft_atoi ft_isalpha ft_isdigit ft_isalnum  ft_isascii \
-				ft_isprint ft_toupper ft_tolower ft_memalloc ft_memdel \
-				ft_strnew ft_strdel ft_strclr ft_striter ft_striteri \
-				ft_strmap ft_strmapi ft_strequ ft_strnequ ft_strsub \
-				ft_strjoin ft_strtrim ft_strsplit ft_itoa ft_putchar \
-				ft_putstr ft_putnbr ft_putchar_fd ft_putendl ft_putstr_fd \
-				ft_putendl_fd ft_putnbr_fd \
-				ft_lstnew ft_lstdelone ft_lstdel \
-				ft_lstadd ft_lstadd_e ft_lstiter ft_lstmap \
-				ft_isupper ft_islower ft_isspace \
-				ft_get_fd_buf ft_get_next_line \
-				ft_step_args ft_strtoi ft_abs
+A_NAME		=	lib$(LIB_SUFFIX).a
+SO_NAME		=	lib$(LIB_SUFFIX).so
 
-C_PATHS		=	$(addprefix $(SRCS), $(addsuffix .c, $(C_FUNCTIONS)))
-OBJ_FILES	=						 $(addsuffix .o, $(C_FUNCTIONS))
-DEB_FILES	=						 $(addsuffix .d, $(C_FUNCTIONS))
-CC			=	gcc
+# Folders
+LIB				=	.
+OBJ				=	obj
+OBJ_SO			=	obj_so
+SRC				=	.
+INCLUDE			=	.
+FOLDERS			=	$(OBJ) $(OBJ_SO)
+INCLUDES		=	-I $(INCLUDE)
 
-all:$(NAME)
+# Compiler and linking parameters
+CC				=	clang
+C_FLAGS			=	-g -Wall -Wextra -Werror $(INCLUDES)
+LD_FLAGS		=	-std=gnu99
+
+# C (Source code) and H (Header) files
+SRC_C_FILES		=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
+					ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c \
+					ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strchr.c \
+					ft_strrchr.c ft_strstr.c ft_strnstr.c ft_strcmp.c ft_strncmp.c \
+					ft_atoi.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
+					ft_isprint.c ft_toupper.c ft_tolower.c ft_memalloc.c ft_memdel.c \
+					ft_strnew.c ft_strdel.c ft_strclr.c ft_striter.c ft_striteri.c \
+					ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c \
+					ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c \
+					ft_putstr.c ft_putnbr.c ft_putchar_fd.c ft_putendl.c ft_putstr_fd.c \
+					ft_putendl_fd.c ft_putnbr_fd.c \
+					ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
+					ft_lstadd.c ft_lstadd_e.c ft_lstiter.c ft_lstmap.c \
+					ft_isupper.c ft_islower.c ft_isspace.c \
+					ft_get_fd_buf.c ft_get_next_line.c \
+					ft_step_args.c ft_strtoi.c ft_abs.c
+
+SRC_H_FILES		=	libft.h
+
+# Path folders for H, C, O and APP files
+H_FILES			=	$(addprefix $(INCLUDE)/, $(SRC_H_FILES))
+C_FILES			=	$(addprefix $(SRC)/, $(SRC_C_FILES))
+O_FILES			=	$(addprefix $(OBJ)/, $(patsubst %.c, %.o, $(SRC_C_FILES)))
+SO_FILES		=	$(addprefix $(OBJ_SO)/, $(patsubst %.c, %.o, $(SRC_C_FILES)))
+
+# Colours for printouts
+RED				=	\033[0;31m
+GREEN			=	\033[0;32m
+YELLOW			=	\033[0;33m
+END				=	\033[0m
+
 .PHONY: all
+all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	@ar -rcs $(LIB_NAME) $?
+$(NAME): $(FOLDERS) $(O_FILES)
+	ar -rcs $(A_NAME) $(O_FILES)
 
-$(OBJ_FILES):%.o:$(SRCS)%.c $(INCLUDES)/libft.h
-	@$(CC) $(C_FLAGS) -c $<
+$(O_FILES): $(OBJ)/%.o: $(SRC)/%.c $(H_FILES) Makefile
+	$(CC) -c -o $@ $< $(C_FLAGS)
 
-clean:
-	@\rm -f $(OBJ_FILES)
-	@\rm -f $(DEB_FILES)
+.PHONY: so
+so: $(SO_FILES)
+	$(CC) -shared -fPIC -o $(SO_NAME) $(SO_FILES)
+
+$(SO_FILES): $(OBJ_SO)/%.o: $(SRC)/%.c $(H_FILES) Makefile
+	$(CC) -fPIC -c -o $@ $< $(C_FLAGS)
+
+$(FOLDERS):
+	mkdir $@
+
 .PHONY: clean
+clean:
+	rm -f $(O_FILES)
+	rm -f $(SO_FILES)
 
+.PHONY: fclean
 fclean: clean
-	@\rm -f $(LIB_NAME)
+	rm -f $(A_NAME)
+	rm -f $(SO_NAME)
 
+.PHONY: re
 re: fclean all
+
+.PHONY: bonus
+bonus: all
