@@ -6,7 +6,7 @@
 #    By: juhani <juhani@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2021/03/05 11:32:37 by juhani           ###   ########.fr        #
+#    Updated: 2021/03/05 11:41:00 by juhani           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,7 @@ INCLUDES		=	-I $(INCLUDE)
 
 # Compiler and linking parameters
 CC				=	clang
-C_FLAGS			=	-g -Wall -Wextra -Werror $(INCLUDES)
-LD_FLAGS		=	-std=gnu99
+C_FLAGS			=	-std=gnu17 -g -Wall -Wextra -Werror $(INCLUDES)
 
 # C (Source code) and H (Header) files
 SRC_C_FILES		=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
