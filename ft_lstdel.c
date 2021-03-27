@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:50:06 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/12/10 12:06:56 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/21 23:20:19 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 
 void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	if (alst && *alst)
+	t_list			*elem;
+	t_list			*next_elem;
+
+	if (alst)
 	{
-		ft_lstdel(&(*alst)->next, del);
-		ft_lstdelone(alst, del);
+		elem = *alst;
+		while (elem)
+		{
+			next_elem = elem->next;
+			ft_lstdelone(&elem, del);
+			elem = next_elem;
+		}
 	}
-	return ;
 }

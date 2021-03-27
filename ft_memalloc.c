@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 08:45:35 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/23 13:43:32 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/21 12:02:38 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ void	*ft_memalloc(size_t size)
 {
 	void	*mem_area;
 
-	if ((mem_area = malloc(size)))
-		ft_bzero(mem_area, size);
+	if (!(mem_area = malloc(size)))
+	{
+		ft_putstr("MAJOR ERROR: Memory allocation failed.\n");
+		exit(42);
+	}
+	ft_bzero(mem_area, size);
 	return (mem_area);
 }

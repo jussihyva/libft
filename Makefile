@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juhani <juhani@student.42.fr>              +#+  +:+       +#+         #
+#    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2021/03/05 11:41:00 by juhani           ###   ########.fr        #
+#    Updated: 2021/03/19 06:12:52 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRC_C_FILES		=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 					ft_lstadd.c ft_lstadd_e.c ft_lstiter.c ft_lstmap.c \
 					ft_isupper.c ft_islower.c ft_isspace.c \
 					ft_get_fd_buf.c ft_get_next_line.c \
-					ft_step_args.c ft_strtoi.c ft_abs.c
+					ft_step_args.c ft_abs.c
 
 SRC_H_FILES		=	libft.h
 
