@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 12:25:17 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/28 08:49:16 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 10:17:36 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 char	*ft_strnew(size_t size)
 {
-	return ((char *)ft_memalloc(sizeof(char) * (size + 1)));
+	char	*str;
+
+	str = (char *)ft_memalloc(sizeof(char) * (size + 1));
+	return (str);
 }

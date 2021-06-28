@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wkorande <wkorande@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:14:03 by wkorande          #+#    #+#             */
-/*   Updated: 2019/12/11 14:16:14 by wkorande         ###   ########.fr       */
+/*   Updated: 2021/03/27 09:50:58 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_abs(int i)
 {
-	return (i < 0 ? i * -1 : i);
+	int		abs;
+
+	if (i < 0)
+		abs = i * -1;
+	else
+		abs = i;
+	return (abs);
 }

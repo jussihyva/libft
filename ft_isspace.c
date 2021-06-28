@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 17:56:02 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/30 17:13:19 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 10:09:07 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	char		space_array[7];
 	int			index;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 11:45:04 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/26 18:47:57 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 10:16:05 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	char		*ptr;
 
-	if ((ptr = ft_memccpy(dst, src, '\0', len)))
+	ptr = ft_memccpy(dst, src, '\0', len);
+	if (ptr)
 	{
 		while ((size_t)(ptr - dst) < len)
 		{

@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:50:06 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/03/21 23:20:19 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/04/09 13:42:19 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 			ft_lstdelone(&elem, del);
 			elem = next_elem;
 		}
+		*alst = NULL;
 	}
 }

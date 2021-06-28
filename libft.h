@@ -6,7 +6,7 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 14:03:03 by jkauppi           #+#    #+#             */
-/*   Updated: 2021/03/19 06:14:01 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 09:46:40 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BUFF_SIZE 100
 # define BUFF_FACTOR 10
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	size_t			content_size;
@@ -28,7 +28,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_fd_elem
+typedef struct s_fd_elem
 {
 	char			*buffer;
 	char			*read_ptr;

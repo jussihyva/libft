@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 11:12:34 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/27 11:13:35 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 10:19:25 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	*ft_strrchr(const char *s, int c)
 		ptr = (char *)s;
 		while (ptr && *ptr)
 		{
-			if ((ptr = ft_memchr(ptr, c, ft_strlen(ptr) + 1)))
+			ptr = ft_memchr(ptr, c, ft_strlen(ptr) + 1);
+			if (ptr)
 			{
 				match_ptr = ptr;
 				ptr++;

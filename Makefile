@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2021/03/19 06:12:52 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/04/17 10:41:20 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,10 @@ INCLUDES		=	-I $(INCLUDE)
 
 # Compiler and linking parameters
 CC				=	clang
-C_FLAGS			=	-std=gnu17 -g -Wall -Wextra -Werror $(INCLUDES)
+C_FLAGS			=	-fPIE -std=gnu17 -g -Wall -Wextra -Werror $(INCLUDES)
 
 # C (Source code) and H (Header) files
+TARGET_NAME		=	../$(NAME)
 SRC_C_FILES		=	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 					ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c \
 					ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strchr.c \
@@ -61,13 +62,15 @@ YELLOW			=	\033[0;33m
 END				=	\033[0m
 
 .PHONY: all
-all: $(NAME)
+all: $(TARGET_NAME)
+	@echo "$(GREEN)Done!$(END)"
 
-$(NAME): $(FOLDERS) $(O_FILES)
-	ar -rcs $(A_NAME) $(O_FILES)
+$(TARGET_NAME): ../%: % $(FOLDERS) $(O_FILES)
+	cp $< $@
 
 $(O_FILES): $(OBJ)/%.o: $(SRC)/%.c $(H_FILES) Makefile
 	$(CC) -c -o $@ $< $(C_FLAGS)
+	ar -rcs $(NAME) $@
 
 .PHONY: so
 so: $(SO_FILES)

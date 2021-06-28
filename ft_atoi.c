@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:02:02 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/12 12:51:51 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 09:51:22 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		add_digit(long *nbr, char c, int neg)
+static int	add_digit(long *nbr, char c, int neg)
 {
 	long		tmp;
 
@@ -31,7 +31,7 @@ static int		add_digit(long *nbr, char c, int neg)
 	return (0);
 }
 
-int				ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	long			nbr;
 	int				neg;

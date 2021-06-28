@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 17:55:33 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/11/20 20:13:13 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 10:20:06 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-static void		ft_save_word(char **array, char *s, int w_len, int w_count)
+static void	ft_save_word(char **array, char *s, int w_len, int w_count)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ static void		ft_save_word(char **array, char *s, int w_len, int w_count)
 	return ;
 }
 
-static int		ft_count_save(char *s, char c, char **array)
+static int	ft_count_save(char *s, char c, char **array)
 {
 	int		w_count;
 	int		w_len;
@@ -56,7 +56,7 @@ static int		ft_count_save(char *s, char c, char **array)
 	return (w_count);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char	**ft_strsplit(char const *s, char c)
 {
 	int			num_of_words;
 	char		**array;

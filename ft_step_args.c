@@ -6,13 +6,13 @@
 /*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 09:33:59 by jkauppi           #+#    #+#             */
-/*   Updated: 2020/08/23 12:01:10 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 10:24:49 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_step_args(int *argc, char ***argv)
+void	ft_step_args(int *argc, char ***argv)
 {
 	(*argc)--;
 	(*argv)++;

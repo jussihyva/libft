@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 18:29:56 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/10/30 16:45:38 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/03/27 10:08:45 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	return (ft_isupper(c) || ft_islower(c));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 10:24:46 by jkauppi           #+#    #+#             */
-/*   Updated: 2020/04/08 16:36:30 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/03/27 10:45:42 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static int			ft_build_new_line(t_fd_elem **fd_elem, char **line,
+static int	ft_build_new_line(t_fd_elem **fd_elem, char **line,
 		char *match_ptr, t_list **elem_lst)
 {
 	t_list		*elem;
 	t_list		*tmp;
 
-	if (!(*line = ft_strnew(match_ptr - (*fd_elem)->read_ptr +
-						(*fd_elem)->saved_chars)))
-		return (-1);
+	*line = ft_strnew(match_ptr - (*fd_elem)->read_ptr
+			+ (*fd_elem)->saved_chars);
 	*match_ptr = '\0';
 	if (elem_lst && *elem_lst)
 	{
@@ -45,7 +44,7 @@ static int			ft_build_new_line(t_fd_elem **fd_elem, char **line,
 	return (1);
 }
 
-static size_t		ft_add_buf_lst(char *buffer,
+static size_t	ft_add_buf_lst(char *buffer,
 		size_t index, t_list **elem_lst, size_t *num_of_char)
 {
 	t_list			*new_elem;
@@ -64,16 +63,18 @@ static size_t		ft_add_buf_lst(char *buffer,
 	return (index);
 }
 
-static int			ft_reply(t_fd_elem **fd_elem,
-		char **line, t_list **elem)
+static int	ft_reply(t_fd_elem **fd_elem,
+		char **line, t_list **elem, ssize_t ret)
 {
 	char		*buffer;
 
+	if (ret)
+		return (ret);
 	buffer = (*fd_elem)->read_ptr;
 	if (*buffer || *elem)
 	{
 		ft_build_new_line(fd_elem, line, buffer
-					+ ft_strlen(buffer), elem);
+			+ ft_strlen(buffer), elem);
 		return (0);
 	}
 	else
@@ -86,7 +87,7 @@ static int			ft_reply(t_fd_elem **fd_elem,
 	return (0);
 }
 
-static int			ft_read_fd_buffer(t_fd_elem **fd_elem, int fd, char **line,
+static int	ft_read_fd_buffer(t_fd_elem **fd_elem, int fd, char **line,
 		t_list **elem)
 {
 	ssize_t				index;
@@ -100,22 +101,23 @@ static int			ft_read_fd_buffer(t_fd_elem **fd_elem, int fd, char **line,
 	(*fd_elem)->saved_chars = 0;
 	num_of_char = &((*fd_elem)->saved_chars);
 	index = ft_strlen(buffer);
-	while ((ret = read(fd, buffer + index, BUFF_SIZE)) > 0)
+	ret = read(fd, buffer + index, BUFF_SIZE);
+	while (ret > 0)
 	{
 		*(char *)(buffer + index + ret) = '\0';
-		if ((match_ptr = ft_strchr(buffer + index, '\n')))
+		match_ptr = ft_strchr(buffer + index, '\n');
+		if (match_ptr)
 			return (ft_build_new_line(fd_elem, line, match_ptr, elem));
 		index += ret;
 		index = ft_add_buf_lst(buffer, index, elem, num_of_char);
+		ret = read(fd, buffer + index, BUFF_SIZE);
 	}
 	if (!ret)
 		*(buffer + index + 1) = '\0';
-	if (ret)
-		return (ret);
-	return (ft_reply(fd_elem, line, elem));
+	return (ft_reply(fd_elem, line, elem, ret));
 }
 
-int					ft_get_next_line(const int fd, char **line)
+int	ft_get_next_line(const int fd, char **line)
 {
 	char				*match_ptr;
 	t_list				*elem;
@@ -127,7 +129,8 @@ int					ft_get_next_line(const int fd, char **line)
 	{
 		fd_elem = ft_get_fd_buf(fd, sizeof(char) * (BUFF_SIZE * BUFF_FACTOR));
 		buffer = (*fd_elem)->read_ptr;
-		if ((match_ptr = ft_strchr(buffer, '\n')))
+		match_ptr = ft_strchr(buffer, '\n');
+		if (match_ptr)
 			return (ft_build_new_line(fd_elem, line, match_ptr, &elem));
 		else
 			return (ft_read_fd_buffer(fd_elem, fd, line, &elem));
