@@ -6,7 +6,7 @@
 #    By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 09:54:35 by jkauppi           #+#    #+#              #
-#    Updated: 2021/07/08 10:49:34 by jkauppi          ###   ########.fr        #
+#    Updated: 2021/08/19 19:39:59 by jkauppi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,7 @@ bonus: all
 .PHONY: norm
 norm:
 ifeq ($(OS), Darwin)
-	norminette-beta $(SRC)/* $(INCLUDE)/*
+	norminette-beta
 else
-	norminette $(SRC)/* $(INCLUDE)/*
+	norminette
 endif

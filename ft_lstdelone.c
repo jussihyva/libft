@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauppi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jkauppi <jkauppi@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 14:48:52 by jkauppi           #+#    #+#             */
-/*   Updated: 2019/12/10 11:55:36 by jkauppi          ###   ########.fr       */
+/*   Updated: 2021/08/26 23:00:47 by jkauppi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	del((*alst)->content, (*alst)->content_size);
+	if (del)
+		del((*alst)->content, (*alst)->content_size);
+	ft_memdel((void **)&(*alst)->content);
 	ft_memdel((void **)alst);
 	return ;
 }
